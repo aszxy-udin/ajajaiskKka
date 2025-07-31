@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hai Kak Sinta 🌷</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px #00000040;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    button {
+      padding: 15px 35px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 50px;
+      background: #fff;
+      color: #ff6a88;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Partikel Cinta */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s infinite ease-in;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -20px;
+        opacity: 1;
+        transform: translateX(0) rotate(45deg);
+      }
+      100% {
+        bottom: 120%;
+        opacity: 0;
+        transform: translateX(30px) rotate(45deg);
+      }
+    }
+
+    /* Galeri */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 150px);
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Halaman 1 -->
+  <div class="container" id="page1">
+    <h1>Selamat Datang, Kak Sinta 💖</h1>
+    <p>
+      Hari ini nggak ada yang spesial sih...<br>
+      Kecuali kalau kamu tahu, bahwa kamu selalu spesial di hati aku 💌
+    </p>
+    <button onclick="nextPage()">Klik untuk lanjut 👉</button>
+  </div>
+
+  <!-- Halaman 2 -->
+  <div class="container hidden" id="page2">
+    <h1>Untukmu, Desika Sinta Permatasari ✨</h1>
+    <p>
+      Aku cuma mau bilang satu hal: kamu terlalu indah untuk dilupakan.<br><br>
+      Aku nggak janji akan jadi yang sempurna, tapi aku bakal berusaha jadi yang terbaik buat kamu.<br><br>
+      Makasih udah hadir di hidupku, kamu itu rumah di saat semua terasa asing 🌹
+    </p>
+    <button onclick="goToGallery()">Halaman Selanjutnya</button>
+  </div>
+
+  <!-- Halaman 3 (Galeri Foto) -->
+  <div class="container hidden" id="page3">
+    <h1>KAMU LEBIH TUA TAPI AKU LEBIH TINGGII</h1>
+    <div class="gallery">
+      <img src="https://files.catbox.moe/cr9a4e.jpg" alt="Foto 1">
+      <img src="https://files.catbox.moe/frsraz.jpg" alt="Foto 2">
+      <img src="https://files.catbox.moe/r02jrt.jpg" alt="Foto 3">
+      <img src="https://files.catbox.moe/sl42w4.jpg" alt="Foto 4">
+    </div>
+    <p style="margin-top: 30px;">
+      Cepat tinggi ya cebol, biar ga gampang ilang.🥰<br>
+      🌹💄💞
+    </p>
+  </div>
+
+  <!-- Musik -->
+  <audio id="loveMusic" src="https://files.catbox.moe/a2aa4u.mp3"></audio>
+
+  <!-- Partikel cinta dikurangi -->
+  <script>
+    function createHearts() {
+      for (let i = 0; i < 6; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${Math.random() * 3 + 3}s`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+    }
+
+    setInterval(createHearts, 1500);
+
+    function nextPage() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page2').classList.remove('hidden');
+      document.getElementById('loveMusic').play();
+    }
+
+    function goToGallery() {
+      document.getElementById('page2').classList.add('hidden');
+      document.getElementById('page3').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
